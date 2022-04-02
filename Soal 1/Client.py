@@ -15,7 +15,7 @@ def make_socket(destination_address='localhost',port=12000):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = (destination_address, port)
-        logging.warning(f"connecting to {server_address}")
+        # logging.warning(f"connecting to {server_address}")
         sock.connect(server_address)
         return sock
     except Exception as ee:
@@ -53,10 +53,10 @@ def send_command(command_str,is_secure=False):
         sock = make_secure_socket(alamat_server,port_server)
     else:
         sock = make_socket(alamat_server,port_server)
-
-    logging.warning(f"connecting to {server_address}")
+    # Biar Contohnya Keliatan
+    # logging.warning(f"connecting to {server_address}")
     try:
-        logging.warning(f"sending message ")
+        # logging.warning(f"sending message ")
         sock.sendall(command_str.encode())
         # Look for the response, waiting until socket is done (no more data)
         data_received="" #empty string
@@ -74,7 +74,7 @@ def send_command(command_str,is_secure=False):
         # at this point, data_received (string) will contain all data coming from the socket
         # to be able to use the data_received as a dict, need to load it using json.loads()
         hasil = deserialisasi(data_received)
-        logging.warning("data received from server:")
+        # logging.warning("data received from server:")
         return hasil
     except Exception as ee:
         logging.warning(f"error during data receiving {str(ee)}")
@@ -121,30 +121,16 @@ def requestdata(total_request):
 if __name__=='__main__':
     h = lihatversi(is_secure=False)
     print("============================")
-    
-    # Request Data
+
+    # Request Data 1
+    requestdata(1)
+    print("============================")
+    # Request Data 
+    requestdata(5)
+    print("============================")
+    # Request Data 20
+    requestdata(10)   
+    print("============================")
+    # Request Data 20
     requestdata(20)
-
-#     h = getdatapemain(1,is_secure=False)
-#     if (h):
-#         print(h['nama'],h['nomor'])
-#     else:
-#         print("kegagalan pada data transfer")
-
-#     h = getdatapemain(2,is_secure=False)
-#     if (h):
-#         print(h['nama'],h['nomor'])
-#     else:
-#         print("kegagalan pada data transfer")
-
-#     h = getdatapemain(3,is_secure=False)
-#     if (h):
-#         print(h['nama'],h['nomor'])
-#     else:
-#         print("kegagalan pada data transfer")
-
-#     h = getdatapemain(4,is_secure=False)
-#     if (h):
-#         print(h['nama'],h['nomor'])
-#     else:
-#         print("kegagalan pada data transfer")
+    print("============================")
