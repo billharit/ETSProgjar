@@ -116,7 +116,8 @@ def requestdata(total_request):
     catat_akhir = datetime.datetime.now()
     selesai = catat_akhir - catat_awal
     print(f"Waktu TOTAL yang dibutuhkan {selesai} detik {catat_awal} s/d {catat_akhir}")
-    
+    latency = (catat_akhir-catat_awal).total_seconds() / total_request
+    print("Wakut Per Request : {}".format(latency))
     return None
 
 

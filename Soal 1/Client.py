@@ -53,7 +53,7 @@ def send_command(command_str,is_secure=False):
         sock = make_secure_socket(alamat_server,port_server)
     else:
         sock = make_socket(alamat_server,port_server)
-    # Biar Contohnya Keliatan
+
     # logging.warning(f"connecting to {server_address}")
     try:
         # logging.warning(f"sending message ")
@@ -114,6 +114,8 @@ def requestdata(total_request):
     catat_akhir = datetime.datetime.now()
     selesai = catat_akhir - catat_awal
     print(f"Waktu TOTAL yang dibutuhkan {selesai} detik {catat_awal} s/d {catat_akhir}")
+    latency = (catat_akhir-catat_awal).total_seconds() / total_request
+    print("Wakut Per Request : {}".format(latency))
     
     return None
 
@@ -121,16 +123,18 @@ def requestdata(total_request):
 if __name__=='__main__':
     h = lihatversi(is_secure=False)
     print("============================")
-
+    
     # Request Data 1
-    requestdata(1)
+    requestdata(1) 
     print("============================")
-    # Request Data 
+    # Request Data 10
     requestdata(5)
     print("============================")
-    # Request Data 20
-    requestdata(10)   
+    # Request Data 15
+    requestdata(10)
     print("============================")
     # Request Data 20
     requestdata(20)
     print("============================")
+
+

@@ -103,6 +103,8 @@ def acceptConnection(client_address, connection):
 
 def run_server(server_address,is_secure=False):
     # ------------------------------ SECURE SOCKET INITIALIZATION ----
+    print("SERVERADDRES")
+    print(server_address)
     if is_secure == True:
         print(os.getcwd())
         cert_location = os.getcwd() + '/certs/'
